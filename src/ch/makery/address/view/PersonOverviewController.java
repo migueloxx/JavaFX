@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import org.controlsfx.dialog.Dialogs;
+
 import ch.makery.address.MainApp;
 import ch.makery.address.model.Person;
 import ch.makery.address.util.DateUtil;
@@ -50,7 +53,7 @@ public class PersonOverviewController {
         		cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(
         		cellData -> cellData.getValue().lastNameProperty());
-
+        
         // Clear person details.
         showPersonDetails(null);
 
@@ -61,7 +64,7 @@ public class PersonOverviewController {
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
+     * 
      * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
@@ -70,11 +73,11 @@ public class PersonOverviewController {
         // Add observable list data to the table
         personTable.setItems(mainApp.getPersonData());
     }
-
+    
     /**
      * Fills all text fields to show details about the person.
      * If the specified person is null, all text fields are cleared.
-     *
+     * 
      * @param person the person or null
      */
     private void showPersonDetails(Person person) {
@@ -96,4 +99,58 @@ public class PersonOverviewController {
     		birthdayLabel.setText("");
     	}
     }
+
+	/**
+	 * Called when the user clicks on the delete button.
+	 */
+	@FXML
+	private void handleDeletePerson() {
+		int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			personTable.getItems().remove(selectedIndex);
+		} else {
+			// Nothing selected.
+			Dialogs.create()
+		        .title("No Selection")
+		        .masthead("No Person Selected")
+		        .message("Please select a person in the table.")
+		        .showWarning();
+		}
+	}
+	
+	/**
+	 * Called when the user clicks the new button. Opens a dialog to edit
+	 * details for a new person.
+	 */
+	@FXML
+	private void handleNewPerson() {
+		Person tempPerson = new Person();
+		boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+		if (okClicked) {
+			mainApp.getPersonData().add(tempPerson);
+		}
+	}
+
+	/**
+	 * Called when the user clicks the edit button. Opens a dialog to edit
+	 * details for the selected person.
+	 */
+	@FXML
+	private void handleEditPerson() {
+		Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+		if (selectedPerson != null) {
+			boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+			if (okClicked) {
+				showPersonDetails(selectedPerson);
+			}
+
+		} else {
+			// Nothing selected.
+			Dialogs.create()
+				.title("No Selection")
+				.masthead("No Person Selected")
+				.message("Please select a person in the table.")
+				.showWarning();
+		}
+	}
 }
