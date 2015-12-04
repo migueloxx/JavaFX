@@ -76,6 +76,7 @@
 									<effect>
 										<DropShadow />
 									</effect>
+				// added grapichs to buttons
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true">
                                  <image>
