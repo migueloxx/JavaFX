@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
@@ -39,7 +40,7 @@
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="393.0" style="-fx-background-color: #328617;" styleClass="background" stylesheets="@../../../../../DarkTheme.css">
 					<children>
 						<Label layoutX="7.0" layoutY="6.0" styleClass="label-header" text="Person Details:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-						<GridPane layoutX="14.0" layoutY="71.0" prefHeight="167.0" prefWidth="372.0" style="-fx-background-color: #6CC051;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0">
+						<GridPane layoutX="14.0" layoutY="71.0" prefHeight="167.0" prefWidth="372.0" style="-fx-background-color: #21610B;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="71.0">
 							<columnConstraints>
 								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,7 +54,10 @@
 								<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 							</rowConstraints>
 							<children>
-								<Label text="First Name" />
+								<Label text="First Name">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></Label>
 								<Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" />
 								<Label text="Last Name" GridPane.rowIndex="1" />
 								<Label text="Street" GridPane.rowIndex="2" />
@@ -111,7 +115,7 @@
 								</Button>
 							</children>
 						</HBox>
-                  <Text layoutX="268.0" layoutY="46.0" rotate="-36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beta" textAlignment="CENTER" wrappingWidth="87.0">
+                  <Text layoutX="268.0" layoutY="46.0" rotate="-36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eco!" textAlignment="CENTER" wrappingWidth="87.0">
                      <font>
                         <Font name="Cambria" size="27.0" />
                      </font>
